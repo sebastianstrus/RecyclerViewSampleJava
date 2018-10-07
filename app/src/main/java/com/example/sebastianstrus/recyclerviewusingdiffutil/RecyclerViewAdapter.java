@@ -17,19 +17,15 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static java.security.AccessController.getContext;
-
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String> mImageNames = new ArrayList<>();
-    private ArrayList<String> mImages = new ArrayList<>();
+    private ArrayList<Person> mPersons = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(ArrayList<String> mImageNames, ArrayList<String> mImages, Context mContext) {
-        this.mImageNames = mImageNames;
-        this.mImages = mImages;
+    public RecyclerViewAdapter(ArrayList<Person> mPersons, Context mContext) {
+        this.mPersons = mPersons;
         this.mContext = mContext;
     }
 
@@ -48,22 +44,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         Glide.with(mContext)
                 .asBitmap()
-                .load(mImages.get(position))
-                .into(holder.myImage);
+                .load(mPersons.get(position).getImageUrl())
+                .into(holder.imageIV);
 
-        holder.myName.setText(mImageNames.get(position));
+        holder.nameTV.setText(mPersons.get(position).getName());
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: clickedon: " + mImageNames.get(position));
-                Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: clickedon: " + mPersons.get(position).getName());
+                Toast.makeText(mContext, mPersons.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mImageNames.size();
+        return mPersons.size();
     }
 
 
@@ -71,15 +68,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        CircleImageView myImage;
-        TextView myName;
+        CircleImageView imageIV;
+        TextView nameTV;
+
+
         RelativeLayout parentLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            myImage = itemView.findViewById(R.id.id_image);
-            myName = itemView.findViewById(R.id.id_taxtview);
+            imageIV = itemView.findViewById(R.id.id_imageView);
+            nameTV = itemView.findViewById(R.id.id_taxtview);
+
             parentLayout = itemView.findViewById(R.id.parent_layout);
 
         }

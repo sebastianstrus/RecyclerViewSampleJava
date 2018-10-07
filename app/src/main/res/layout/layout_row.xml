@@ -7,7 +7,7 @@
     android:id="@+id/parent_layout">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/id_image"
+        android:id="@+id/id_imageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@mipmap/ic_launcher"/>
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sebastian"
-        android:layout_toRightOf="@+id/id_image"
+        android:layout_toRightOf="@+id/id_imageView"
         android:textSize="30sp"
         android:textColor="#000"
         android:layout_centerVertical="true"

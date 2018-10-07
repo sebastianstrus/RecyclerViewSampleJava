@@ -14,8 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     // variables
-    private ArrayList<String> mNames = new ArrayList<>();
-    private ArrayList<String> mImageUrls = new ArrayList<>();
+    private ArrayList<Person> mPersons = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +30,14 @@ public class MainActivity extends AppCompatActivity {
     private void initImageBitmaps() {
         Log.d(TAG, "initImageBitmaps: preparing bitmapds");
         for(int i=0; i<20; i++){
-            mImageUrls.add("http://placehold.it/120x120&text=image" + i);
-            mNames.add("MyName" + i);
+            mPersons.add(new Person("MyName" + i,"http://placehold.it/120x120&text=image" + i));
         }
     }
 
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recycler view");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mNames, mImageUrls, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mPersons, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
