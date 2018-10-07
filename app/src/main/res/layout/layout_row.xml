@@ -22,4 +22,14 @@
         android:textColor="#000"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"/>
+
+    <Button
+        android:id="@+id/id_buttonX"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:text="X"
+        android:textSize="26dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@+id/id_taxtview"/>
 </RelativeLayout>

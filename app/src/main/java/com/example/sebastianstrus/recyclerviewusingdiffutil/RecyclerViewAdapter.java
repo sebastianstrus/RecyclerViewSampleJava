@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,11 +50,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.nameTV.setText(mPersons.get(position).getName());
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+        holder.buttonX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clickedon: " + mPersons.get(position).getName());
-                Toast.makeText(mContext, mPersons.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "XXX " + mPersons.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -70,6 +71,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         CircleImageView imageIV;
         TextView nameTV;
+        Button buttonX;
 
 
         RelativeLayout parentLayout;
@@ -80,7 +82,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imageIV = itemView.findViewById(R.id.id_imageView);
             nameTV = itemView.findViewById(R.id.id_taxtview);
 
-            parentLayout = itemView.findViewById(R.id.parent_layout);
+            buttonX = itemView.findViewById(R.id.id_buttonX);
+
 
         }
     }
