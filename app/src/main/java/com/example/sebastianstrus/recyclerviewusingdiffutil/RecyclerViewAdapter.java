@@ -22,7 +22,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<Person> mPersons = new ArrayList<>();
+    public ArrayList<Person> mPersons = new ArrayList<>();
     private Context mContext;
 
     public RecyclerViewAdapter(ArrayList<Person> mPersons, Context mContext) {
@@ -54,7 +54,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clickedon: " + mPersons.get(position).getName());
-                Toast.makeText(mContext, "XXX " + mPersons.get(position).getName(), Toast.LENGTH_SHORT).show();
+
+
+                mPersons.remove(position);//.add(position, person);
+
+                // Notify the adapter that an item removed
+                notifyDataSetChanged();
             }
         });
     }
@@ -73,8 +78,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView nameTV;
         Button buttonX;
 
-
-        RelativeLayout parentLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

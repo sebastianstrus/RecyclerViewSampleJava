@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     // variables
     private ArrayList<Person> mPersons = new ArrayList<>();
+
+    RecyclerView recyclerView;
+    RecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +62,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recycler view");
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mPersons, this);
+        recyclerView = findViewById(R.id.recycler_view);
+        adapter = new RecyclerViewAdapter(mPersons, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
     public void addNewPerson(Person person) {
-        mPersons.add(person);
 
+        if (adapter.mPersons.size() < 7) {
+            int position = adapter.mPersons.size();
+            adapter.mPersons.add(person);
+
+            // Notify the adapter that an item inserted
+            adapter.notifyDataSetChanged();
+        }
+        else {
+            Toast.makeText(this, "Maximum number of rules is 7", Toast.LENGTH_SHORT).show();
+        }
     }
 }
